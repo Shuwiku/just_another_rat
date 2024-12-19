@@ -2,6 +2,7 @@
 """Just Another Rat."""
 
 import asyncio
+import sys
 
 from loguru import logger
 
@@ -14,6 +15,11 @@ async def main() -> None:
     """If __name__ == "__main__"."""
     # Настройка логирования
     logger.remove()
+    logger.add(
+        sink=sys.stderr,
+        level=config.LOG_LEVEL,
+        format=config.LOG_FORMAT
+    )
     logger.add(
         sink=config.LOG_FILES_PATH,
         level=config.LOG_LEVEL,

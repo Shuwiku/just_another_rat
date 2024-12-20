@@ -7,6 +7,11 @@ from aiogram.types import Message
 from loguru import logger
 
 
+DESCRIPTION: str = \
+    "*📄 Команда /start*:\n\n" \
+    "Первое сообщение в диалоге с ботом. Выводит предупреждение и краткое" \
+    " описание проекта."
+
 router: Router = Router(name=__name__)
 
 
@@ -18,6 +23,10 @@ async def command_start(
 ) -> None:
     """Выводит приветственное сообщение и краткую информацию о боте."""
     logger.debug("Обработчик:\tcommand_start")  # Логирование
+
+    if message.text == "/start /?":
+        await message.answer(text=DESCRIPTION)
+        return None
 
     await message.answer(
         text="💻    *Just Another Rat*\n"

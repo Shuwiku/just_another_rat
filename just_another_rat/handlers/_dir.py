@@ -9,6 +9,11 @@ from aiogram.types import Message
 from loguru import logger
 
 
+DESCRIPTION: str = \
+    "*📄 Команда /dir*:\n\n" \
+    "Выводит список файлов и каталогов в текущей директории.\n\n" \
+    "*⚠️ Некоторые символы могут быть нечитаемыми из-за проблем с кодировкой.*"
+
 router: Router = Router(name=__name__)
 
 
@@ -20,6 +25,10 @@ async def command_dir(
 ) -> None:
     """Выводит приветственное сообщение и краткую информацию о боте."""
     logger.debug("Обработчик:\tcommand_dir")  # Логирование
+
+    if message.text == "/dir /?":
+        await message.answer(text=DESCRIPTION)
+        return None
 
     result: str = os.popen("dir /b").read()
 

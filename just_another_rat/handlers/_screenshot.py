@@ -11,6 +11,12 @@ from loguru import logger
 from mss import mss
 
 
+DESCRIPTION: str = \
+    "*📄 Команда /screenshot*:\n\n" \
+    "Делает снимок экрана пользователя и отправляет его администратору.\n\n" \
+    "*⚠️ Снимок может прийти не сразу, если у пользователя слабое" \
+    " соединение с Интернетом.*"
+
 router: Router = Router(name=__name__)
 
 
@@ -22,6 +28,10 @@ async def command_screenshot(
 ) -> None:
     """Делает снимок экрана пользователя и отправляет администратору."""
     logger.debug("Обработчик:\tcommand_screenshot")
+
+    if message.text == "/screenshot /?":
+        await message.answer(text=DESCRIPTION)
+        return None
 
     screenshot_file: str = str(Path("image.png").resolve())
 

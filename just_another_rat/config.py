@@ -16,7 +16,7 @@ HANDLERS: list[str] = [
 ]
 HANDLERS_FILENAME_PATTERN: str = "_{handler_name}.py"
 HANDLERS_DIR_PATH: Path = _bot_dir / "handlers"
-PARSE_MODE: str = "html"
+PARSE_MODE: str = "Markdown"
 
 # Логирование
 _log_dir: Path = Path("logs").resolve()

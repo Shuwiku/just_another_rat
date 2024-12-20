@@ -27,6 +27,5 @@ async def command_dir(
         text="*📁 Список файлов и каталогов:*\n\n"
              f"```Список\n"
              f"{result}"
-             "```",
-        parse_mode="Markdown"
+             "```"
     )

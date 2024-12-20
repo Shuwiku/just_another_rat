@@ -28,8 +28,12 @@ async def command_execute(
     logger.trace("Команда выполнена.")  # Логирование
 
     if bool(result):
-        await message.answer(text="💻 Результат выполнения команды:")
-        await message.answer(text=result, parse_mode=None)
+        await message.answer(
+            text="💻 Результат выполнения команды:\n\n"
+                 "```Результат\n"
+                 f"{result}"
+                 "```"
+        )
 
     else:
         await message.answer(

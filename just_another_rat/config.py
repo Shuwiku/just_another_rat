@@ -21,8 +21,7 @@ HANDLERS_DIR_PATH: Path = _bot_dir / "handlers"
 PARSE_MODE: str = "Markdown"
 
 # Логирование
-_log_dir: Path = Path("logs").resolve()
-LOG_FILES_PATH: str = str(_log_dir / "{time:YYYY.MM.DD HH-mm-ss}.log")
+LOG_FILES_PATH: str = str(_bot_dir / "logs.log")
 LOG_FORMAT: str = "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> |" \
                   " <level>{level: <8}</level> | <level>{message}</level>"
 LOG_LEVEL: str = "TRACE"

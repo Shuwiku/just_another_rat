@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Обработчик команды начала диалога с ботом."""
+"""Команда, выводящая список директорий и файлов в текущей директории."""
 
 import os
 
@@ -8,11 +8,8 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from loguru import logger
 
+import locale_
 
-DESCRIPTION: str = \
-    "*📄 Команда /dir*:\n\n" \
-    "Выводит список файлов и каталогов в текущей директории.\n\n" \
-    "*⚠️ Некоторые символы могут быть нечитаемыми из-за проблем с кодировкой.*"
 
 router: Router = Router(name=__name__)
 
@@ -23,18 +20,12 @@ router: Router = Router(name=__name__)
 async def command_dir(
     message: Message
 ) -> None:
-    """Выводит приветственное сообщение и краткую информацию о боте."""
+    """Выводит список директорий и файлов в текущей директории."""
     logger.debug("Обработчик:\tcommand_dir")  # Логирование
 
+    # Выводит справку по команде
     if message.text == "/dir /?":
-        await message.answer(text=DESCRIPTION)
+        await message.answer(text=locale_.DIR_DOC)
         return None
 
-    result: str = os.popen("dir /b").read()
-
-    await message.answer(
-        text="*📁 Список файлов и каталогов:*\n\n"
-             f"```Список\n"
-             f"{result}"
-             "```"
-    )
+    await message.answer(text=locale_.DIR % os.popen("dir /b").read().strip())

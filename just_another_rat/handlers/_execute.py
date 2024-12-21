@@ -8,13 +8,8 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from loguru import logger
 
+import locale_
 
-DESCRIPTION: str = \
-    "*📄 Команда /execute*:\n\n" \
-    "Выполняет переданную команду и отправляет результат её выполнения" \
-    " (если он есть).\n\n" \
-    "Например: `/execute cd`.\n\n" \
-    "*⚠️ Некоторые символы могут быть нечитаемыми из-за проблем с кодировкой.*"
 
 router: Router = Router(name=__name__)
 
@@ -28,25 +23,19 @@ async def command_execute(
     """Выполняет переданную команду и отправляет результат её выполнения."""
     logger.debug("Обработчик:\tcommand_execute")  # Логирование
 
+    # Выводит справку по команде
     if message.text == "/execute /?":
-        await message.answer(text=DESCRIPTION)
+        await message.answer(text=locale_.EXECUTE_DOC)
         return None
 
     command: str = message.text[len("/execute"):].strip()  # pyright: ignore
     logger.trace(f"Выполнение команды: {command}")  # Логирование
 
-    result: str = os.popen(command).read()
-    logger.trace("Команда выполнена.")  # Логирование
+    result: str = os.popen(command).read().strip()
 
+    # Если команда вернула хоть что-то
     if bool(result):
-        await message.answer(
-            text="💻 Результат выполнения команды:\n\n"
-                 "```Результат\n"
-                 f"{result}"
-                 "```"
-        )
+        await message.answer(text=locale_.EXECUTE_1 % result)
 
     else:
-        await message.answer(
-            text="✅ Команда была выполнена, но ничего не вернула."
-        )
+        await message.answer(text=locale_.EXECUTE_2)

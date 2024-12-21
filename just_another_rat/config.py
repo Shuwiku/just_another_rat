@@ -9,6 +9,7 @@ _bot_dir: Path = Path("just_another_rat").resolve()
 # Настройки бота
 BOT_TOKEN: str = "BOT_TOKEN_HERE"
 HANDLERS: list[str] = [
+    "cd",
     "dir",
     "execute",
     "help",

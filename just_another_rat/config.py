@@ -13,8 +13,9 @@ HANDLERS: list[str] = [
     "dir",
     "execute",
     "help",
+    "screenshot",
     "start",
-    "screenshot"
+    "terminal"
 ]
 HANDLERS_FILENAME_PATTERN: str = "_{handler_name}.py"
 HANDLERS_DIR_PATH: Path = _bot_dir / "handlers"

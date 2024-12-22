@@ -11,6 +11,7 @@ BOT_TOKEN: str = "BOT_TOKEN_HERE"
 HANDLERS: list[str] = [
     "cd",
     "dir",
+    "download",
     "execute",
     "help",
     "screenshot",

@@ -3,7 +3,7 @@
 
 from pathlib import Path
 
-from aiogram import Router
+from aiogram import Bot, Router
 from aiogram.filters import Command
 from aiogram.types import FSInputFile, Message
 from loguru import logger
@@ -49,7 +49,8 @@ async def command_download(
     )
 
     # Удаляет временное сообщение
-    await bot.get_bot().delete_message(
+    bot_: Bot = await bot.get_bot()
+    await bot_.delete_message(
         chat_id=message.from_user.id,  # pyright: ignore
         message_id=message.message_id + 1
     )

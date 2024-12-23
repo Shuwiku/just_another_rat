@@ -11,7 +11,7 @@ from loguru import logger
 __bot: Bot
 
 
-def get_bot(
+async def get_bot(
 ) -> Bot:
     """Возвращает объект бота aiogram.
 
@@ -21,7 +21,7 @@ def get_bot(
     return __bot
 
 
-def init(
+async def init(
     bot_token: str,
     parse_mode: str
 ) -> None:

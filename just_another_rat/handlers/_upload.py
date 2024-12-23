@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from typing import BinaryIO, Optional
 
-from aiogram import Router
+from aiogram import Bot, Router
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import File, Message
@@ -91,11 +91,11 @@ async def upload_file(
         await message.answer(text=locale_.UPLOAD_5)
         return None
 
-    file: File = await bot.get_bot().get_file(
+    bot_: Bot = await bot.get_bot()
+    file: File = await bot_.get_file(
         file_id=file_id
     )
-
-    file_data: Optional[BinaryIO] = await bot.get_bot().download_file(
+    file_data: Optional[BinaryIO] = await bot_.download_file(
         file_path=str(file.file_path)
     )
     with open(file=file_path, mode="wb") as fb:

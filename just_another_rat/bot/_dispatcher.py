@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Функции для создания, настройки и получения объекта диспетчера aiogram."""
 
-from aiogram import Dispatcher
+from aiogram import Dispatcher, Router
 from loguru import logger
 
 from handlers import get_router_handlers
@@ -10,7 +10,7 @@ from handlers import get_router_handlers
 __dispatcher: Dispatcher
 
 
-def get_dispatcher(
+async def get_dispatcher(
 ) -> Dispatcher:
     """Возвращает объект диспетчера aiogram.
 
@@ -20,12 +20,13 @@ def get_dispatcher(
     return __dispatcher
 
 
-def init(
+async def init(
 ) -> None:
     """Создаёт и настраивает объект диспетчера aiogram."""
     global __dispatcher
 
     __dispatcher = Dispatcher()
-    __dispatcher.include_router(router=get_router_handlers())
+    routers: Router = await get_router_handlers()
+    __dispatcher.include_router(router=routers)
 
     logger.trace("Объект диспетчера создан.")  # Логирование

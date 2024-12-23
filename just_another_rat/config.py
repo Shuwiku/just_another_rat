@@ -4,7 +4,7 @@
 from pathlib import Path
 
 
-_bot_dir: Path = Path("just_another_rat").resolve()
+_bot_dir: Path = Path(".").resolve()
 
 # Настройки бота
 BOT_TOKEN: str = "BOT_TOKEN_HERE"
@@ -20,7 +20,7 @@ HANDLERS: list[str] = [
     "upload"
 ]
 HANDLERS_FILENAME_PATTERN: str = "_{handler_name}.py"
-HANDLERS_DIR_PATH: Path = _bot_dir / "handlers"
+HANDLERS_DIR_PATH: Path = _bot_dir / "just_another_rat" / "handlers"
 PARSE_MODE: str = "Markdown"
 
 # Логирование

@@ -12,7 +12,7 @@ from loguru import logger
 __router_handlers: Router = Router(name="router_handlers")
 
 
-def get_router_handlers(
+async def get_router_handlers(
 ) -> Router:
     """Возвращает объект роутера обработчиков aiogram.
 
@@ -22,7 +22,7 @@ def get_router_handlers(
     return __router_handlers
 
 
-def init(
+async def init(
     handlers: list[str],
     handlers_filename_pattern: str,
     handlers_path: Path

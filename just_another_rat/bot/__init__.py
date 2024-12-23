@@ -10,7 +10,7 @@ from ._bot import get_bot  # noqa: F401
 from ._dispatcher import get_dispatcher  # noqa: F401
 
 
-def init(
+async def init(
     bot_token: str,
     parse_mode: str
 ) -> None:
@@ -20,8 +20,8 @@ def init(
         bot_token (str): Токен телеграм бота.
         parse_mode (str): Режим форматирования текста в сообщениях бота.
     """
-    _bot.init(
+    await _bot.init(
         bot_token=bot_token,
         parse_mode=parse_mode
     )
-    _dispatcher.init()
+    await _dispatcher.init()

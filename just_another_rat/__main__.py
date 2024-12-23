@@ -4,6 +4,7 @@
 import asyncio
 import sys
 
+from aiogram import Bot, Dispatcher
 from loguru import logger
 
 import bot
@@ -28,14 +29,14 @@ async def main() -> None:
     logger.trace("Логирование настроено.")  # Логирование
 
     # Настройка обработчиков
-    handlers.init(
+    await handlers.init(
         handlers=config.HANDLERS,
         handlers_filename_pattern=config.HANDLERS_FILENAME_PATTERN,
         handlers_path=config.HANDLERS_DIR_PATH
     )
 
     # Настройка бота
-    bot.init(
+    await bot.init(
         bot_token=config.BOT_TOKEN,
         parse_mode=config.PARSE_MODE
     )
@@ -43,8 +44,10 @@ async def main() -> None:
     logger.info("Запуск диспетчера.")  # Логирование
 
     # Запуск диспетчера
-    await bot.get_dispatcher().start_polling(
-        bot.get_bot(),
+    bot_: Bot = await bot.get_bot()
+    dispatcher: Dispatcher = await bot.get_dispatcher()
+    await dispatcher.start_polling(
+        bot_,
         skip_updates=True
     )
 

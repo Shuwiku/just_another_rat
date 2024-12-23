@@ -31,7 +31,6 @@ async def main() -> None:
     # Настройка обработчиков
     await handlers.init(
         handlers=config.HANDLERS,
-        handlers_filename_pattern=config.HANDLERS_FILENAME_PATTERN,
         handlers_path=config.HANDLERS_DIR_PATH
     )
 

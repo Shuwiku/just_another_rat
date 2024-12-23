@@ -19,7 +19,6 @@ HANDLERS: list[str] = [
     "terminal",
     "upload"
 ]
-HANDLERS_FILENAME_PATTERN: str = "_{handler_name}.py"
 HANDLERS_DIR_PATH: Path = _bot_dir / "just_another_rat" / "handlers"
 PARSE_MODE: str = "Markdown"
 
